@@ -1,22 +1,20 @@
 const express = require('express')
-const app = express();
-const db = require('./db')
+const mongoose = require('mongoose');
+const url = 'mongodb://localhost:27017/mydatabase'
+const port = 4000;
+const app = express()
+mongoose.connect(url,{})
+.then( result => console.log("Databse connected successfully"))
+.catch(err=> console.log("Not connected"))
 
-app.get('/', function(req,res){
-    res.send("Hello World");
 
+app.get('/',(req,res)=>{
+    res.send("slash router");
+})
+app.get('/about',(req,res)=>{
+    res.send("<h1>This is About Page</h1>");
 })
 
-// app.get('/Home', (req,res)=>{
-//     const obj = {
-//         name:"sahil",
-//         age: 18,
-//         rollno: 45
-//     }
-//     res.send(obj);
-// })
+app.listen(port,()=> console.log( " Server running at:"+port))
 
-// app.get('/About',(req,res)=>{
-//     res.send("This is About Page");
-// })
-app.listen(3001);
+
