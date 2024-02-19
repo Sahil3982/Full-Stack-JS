@@ -2,9 +2,10 @@
   "name": "chaibackend",
   "version": "1.0.0",
   "description": "code by me",
+  "module": "module",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon node index.js"
   },
   "author": "Sahil Patel",
   "license": "ISC",
@@ -12,5 +13,8 @@
     "env": "^0.0.2",
     "express": "^4.18.2",
     "mongoose": "^8.1.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
   }
 }
