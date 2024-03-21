@@ -14,6 +14,9 @@ app.get('/',(req,res)=>{
 app.get('/about',(req,res)=>{
     res.send("<h1>This is About Page</h1>");
 })
+app.get('/login',(req,res)=>{
+    res.send("<h2>Login Page</h2>")
+})
 
 app.listen(port,()=> console.log( " Server running at:"+port))
 
