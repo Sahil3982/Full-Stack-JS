@@ -14,6 +14,7 @@ const Login = () => {
 
   return (
     <>
+      <center>
       <h1>Login Page</h1>
       <input
         type="text"
@@ -24,14 +25,15 @@ const Login = () => {
         }}
       ></input>
       <input
-        type="text"
+        type="password"
         placeholder="password"
         value={pass}
         onChange={(e) => {
           setPass(e.target.value);
         }}
-      ></input>
-      <button onClick={handleSubmit}>Submit</button>
+      ></input><br></br>
+      <button type="submit" onClick={handleSubmit}>Submit</button>
+      </center>
     </>
   );
 };
