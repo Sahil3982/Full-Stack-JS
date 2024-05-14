@@ -1,15 +1,16 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
+import { useState } from "react";
 import "./App.css";
 import TodoForm from "./Components/TodoForm";
 import TodoItem from "./Components/TodoItem";
 import { TodoProvider } from "./Contexts/TodoContext";
 
 function App() {
-  const[todos , setTodos] = React.useState([])
+  const[todos , setTodos] = useState([])
 
   const addTodo = (todo)=>{
-      
+
   }
 
   return (
