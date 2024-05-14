@@ -1,6 +1,19 @@
 /* eslint-disable no-undef */
 import { useContext , createContext } from "react";
-export const TodoContext = createContext({})
+export const TodoContext = createContext({
+    todos : [
+        {
+            id:1,
+            todo : "Todo Message",
+            completed : flase
+
+        }
+    ],
+    addTodo : (todo)=>{},
+    updateTodo : (id,todo)=>{},
+    deleteTodo : (id)=>{},
+    toggleComplete : (id)=>{}
+})
 
 export const useTodo = ()=>{
     return useContext(TodoContext)
