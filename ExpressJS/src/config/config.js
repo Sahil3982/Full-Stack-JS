@@ -1,6 +1,8 @@
-const myConfig = {
+import { config } from "dotenv";
+config()
+const _config = {
 
-    port : process.env.PORT
+    port : process.env.PORT,
 }
 
-export const config = Object.freeze(myConfig);
+export const myConfig = Object.freeze(_config);
