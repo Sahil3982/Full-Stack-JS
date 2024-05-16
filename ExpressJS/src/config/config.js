@@ -3,4 +3,4 @@ const myConfig = {
     port : process.env.PORT
 }
 
-export const config = myConfig
+export const config = Object.freeze(myConfig);
