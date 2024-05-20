@@ -32,7 +32,8 @@ app.get("/api/user/:id", (req, res) => {
 app
   .route("/api/user/:id")
   .post((req, res) => {
-    console.log("POST Request");
+    const body = req.body;
+    console.log(body);
   })
   .patch((req, res) => {
     console.log("PATCH Request");
