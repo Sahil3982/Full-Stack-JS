@@ -33,8 +33,9 @@ app.get("/api/user/:id", (req, res) => {
 app
   .route("/api/user/:id")
   .post((req, res) => {
-    const body = req.body;
-    console.log(body);
+    const reqBody = req.body;
+    console.log('Res', reqBody);
+    return res.json({status : 'pending'})
   })
   .patch((req, res) => {
     console.log("PATCH Request");
