@@ -3,6 +3,7 @@ import userData from "./data.js";
 
 const port = 2000;
 const app = express();
+app.use( express.json())
 
 app.get("/", (req, res) => {
   res.send("Hello");
