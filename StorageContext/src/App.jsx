@@ -11,6 +11,16 @@ function App() {
 
   const addTodo = (todo)=>{
 
+    
+
+  }
+
+  const updateTodo = (id,todo)=>{
+
+  }
+
+  const deleteTodo = (id)=>{
+
   }
 
   return (
