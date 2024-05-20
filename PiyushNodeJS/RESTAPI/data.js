@@ -1,4 +1,4 @@
-[
+const data = [
   {
     id: 1,
     first_name: "Ring",
@@ -135,3 +135,5 @@
   
 
 ];
+
+export default data
