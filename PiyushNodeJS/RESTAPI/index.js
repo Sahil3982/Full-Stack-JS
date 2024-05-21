@@ -1,9 +1,19 @@
 import express from "express";
 import userData from "./data.js";
+import mongoose from "mongoose";
 
 const port = 2000;
 const app = express();
 app.use(express.json());
+
+// Mongodb connection 
+
+mongoose.connect('mongodb://127.0.0.1:27017/piyush').then(() => {
+  console.log("Connected Successfully");
+}).catch((error) => {
+  console.log("Got Error", error);
+})
+
 
 // Uncomment these middlewares if you need them for debugging or specific processing
 // app.use((req, res, next) => {
@@ -16,6 +26,37 @@ app.use(express.json());
 //   return res.json({ message: "Route 1" });
 //   next();
 // });
+
+
+// Schema in Mongodb
+
+const userSchema = new mongoose.Schema({
+  first_name: {
+    type: String,
+    required: true
+  },
+  last_name: {
+    type: String,
+    required: false,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true
+  },
+  gender: {
+    type: String,
+    required: true
+  }
+})
+
+// models in mondodb
+
+const User = mongoose.model("user", userSchema)
+
+
+
+
 
 app.get("/", (req, res) => {
   res.send("Hello");
@@ -48,23 +89,34 @@ app.get("/api/user/:id", (req, res) => {
 
 app
   .route("/api/user")
-  .post((req, res) => {
-    const newUser = req.body;
-    console.log('Received new user data:', newUser);
-    
+  .post(async (req, res) => {
+    const body = req.body;
+    console.log('Received new user data:', body);
+
     // You can add logic to save the new user data to your database here
     // For example, you could push the new user to the userData array
-    
+
     // res.status(201).json({ message: 'User created successfully', user: newUser });
+
+    const result = await User.create({
+      first_name: body.first_name,
+      last_name: body.last_name,
+      email: body.email,
+      gender: body.gender
+    })
+
+    console.log('Result', result);
+
+    return res.status(201).json({ msg: "success" })
   })
-  .patch((req, res) => {
-    console.log("PATCH Request");
-    // Add your patch logic here
-  })
-  .delete((req, res) => {
-    console.log("Delete Request");
-    // Add your delete logic here
-  });
+// .patch((req, res) => {
+//   console.log("PATCH Request");
+//   // Add your patch logic here
+// })
+// .delete((req, res) => {
+//   console.log("Delete Request");
+//   // Add your delete logic here
+// });
 
 app.listen(port, () => {
   console.log(`Running on ${port}`);
