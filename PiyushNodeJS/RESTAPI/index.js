@@ -5,6 +5,17 @@ const port = 2000;
 const app = express();
 app.use( express.json())
 
+// app.use((req,res,next)=>{
+// console.log("Middleware 1st");
+// next();
+// })
+
+// app.use((req,res,next)=>{
+//   console.log("Middleware 2nd");
+//   return res.json({ message : "Route 1"})
+//   next();
+// })
+
 app.get("/", (req, res) => {
   res.send("Hello");
 });

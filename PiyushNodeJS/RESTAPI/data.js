@@ -132,7 +132,7 @@ const data = [
     email: "adeweyi@webnode.com",
     gender: "Male",
   },
-  
+
 
 ];
 
