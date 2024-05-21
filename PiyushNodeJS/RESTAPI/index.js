@@ -31,31 +31,13 @@ mongoose.connect('mongodb://127.0.0.1:27017/piyush').then(() => {
 // Schema in Mongodb
 
 const userSchema = new mongoose.Schema({
-  first_name: {
-    type: String,
-    required: true
-  },
-  last_name: {
-    type: String,
-    required: false,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  gender: {
-    type: String,
-    required: true
-  }
-})
+  first_name: { type: String, required: true },
+  last_name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  gender: { type: String, required: true },
+});
 
-// models in mondodb
-
-const User = mongoose.model("user", userSchema)
-
-
-
+const User = mongoose.model('User', userSchema);
 
 
 app.get("/", (req, res) => {
@@ -87,28 +69,32 @@ app.get("/api/user/:id", (req, res) => {
   }
 });
 
-app
-  .route("/api/user")
-  .post(async (req, res) => {
-    const body = req.body;
-    console.log('Received new user data:', body);
+app.post("/api/user", async (req, res) => {
+  try {
+    const { first_name, last_name, email, gender } = req.body;
 
-    // You can add logic to save the new user data to your database here
-    // For example, you could push the new user to the userData array
+    // Check for required fields
+    if (!first_name || !last_name || !email || !gender) {
+      return res.status(400).json({ message: 'All fields are required' });
+    }
 
-    // res.status(201).json({ message: 'User created successfully', user: newUser });
+    // Create new user
+    const newUser = new User({ first_name, last_name, email, gender });
+    await newUser.save();
 
-    const result = await User.create({
-      first_name: body.first_name,
-      last_name: body.last_name,
-      email: body.email,
-      gender: body.gender
-    })
+    res.status(201).json({ message: 'User created successfully', user: newUser });
+  } catch (error) {
+    // Handle validation errors
+    if (error.name === 'ValidationError') {
+      return res.status(400).json({ message: error.message, errors: error.errors });
+    }
+    // Handle other errors
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
 
-    console.log('Result', result);
 
-    return res.status(201).json({ msg: "success" })
-  })
+
 // .patch((req, res) => {
 //   console.log("PATCH Request");
 //   // Add your patch logic here
