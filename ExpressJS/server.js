@@ -10,7 +10,7 @@ const startServer = () => {
     app.listen(port, () => {
         console.log(`Server is running on port ${port}`);
     });
-};
+}; 
 
 // Call the startServer function to initiate the server
 startServer();
