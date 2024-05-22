@@ -1,14 +1,29 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
-/* eslint-disable react/prop-types */
-function TodoItem({ todo }) {
-    
 
+import { useState } from "react";
+import { useTodo } from "../Contexts/TodoContext";
+
+/* eslint-disable react/prop-types */
+function TodoItem({todo}) {
+
+    const [todoMsg , setTodoMsg] = useState(todo.todo)
+    const [isTodoEditable, setIsTodoEditable] = useState(false)
+    
+    const {deleteTodo , updateTodo , toggleComplete} = useTodo()
+        const editTodo = ()=>{
+            updateTodo(todo.id , {...todo, todo : todoMsg})
+
+            setIsTodoEditable(false)
+        }
+        const toggleCompleted  = ()=>{
+                toggleComplete(todo.id)
+        }
     return (
-        <div
-            className={`flex border border-black/10 rounded-lg px-3 py-1.5 gap-x-3 shadow-sm shadow-white/50 duration-300  text-black ${
+        <div className={`flex border border-black/10 rounded-lg px-3 py-1.5 gap-x-3 shadow-sm shadow-white/50 duration-300  text-black ${
                 todo.completed ? "bg-[#c6e9a7]" : "bg-[#ccbed7]"
-            }`}
-        >
+            }`}>
+
             <input
                 type="checkbox"
                 className="cursor-pointer"
@@ -32,7 +47,8 @@ function TodoItem({ todo }) {
 
                     if (isTodoEditable) {
                         editTodo();
-                    } else setIsTodoEditable((prev) => !prev);
+                    } else
+                     setIsTodoEditable((prev) => !prev);
                 }}
                 disabled={todo.completed}
             >

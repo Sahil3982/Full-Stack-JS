@@ -1,21 +1,22 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
-import { useContext , createContext } from "react";
+import { useContext, createContext } from "react";
 export const TodoContext = createContext({
-    todos : [
+    todos: [
         {
-            id:1,
-            todo : "Todo Message",
-            completed : false
+            id: 1,
+            todo: "Todo Message",
+            completed: false
 
         }
     ],
-    addTodo : (todo)=>{},
-    updateTodo : (id,todo)=>{},
-    deleteTodo : (id)=>{},
-    toggleComplete : (id)=>{}
+    addTodo: (todo) => { },
+    updateTodo: (id, todo) => { },
+    deleteTodo: (id) => { },
+    toggleComplete: (id) => { }
 })
 
-export const useTodo = ()=>{
+export const useTodo = () => {
     return useContext(TodoContext)
 }
 
