@@ -1,9 +1,18 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
+import { useState } from "react";
 import InputBox from "./Components/InputBox";
+import useCurrencyInfo from "./Hooks/useCurrencyInfo";
 
 function App(BackgroundImage) {
 
 
+  const[amount, setAmount] = useState(0);
+  const[from, setFrom] = useState('usd');
+  const[to, setTo] = useState('inr');
+  const[convertedAmount, setConvertedAmount] = useState(0)
+
+  const useCurrencyInfo = useCurrencyInfo(from)
   return (
     <div
       className="w-full h-screen flex flex-wrap justify-center items-center bg-cover bg-no-repeat"
