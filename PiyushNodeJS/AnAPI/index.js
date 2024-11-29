@@ -1,7 +1,21 @@
-const express  = require('express')
-
+const express = require('express')
+const user = require('./data.json')
 const app = express()
+require('dotenv').config()
 
-const PORT = 8000;
+app.get('/user', (req, res) => {
+    return res.json(user)
 
-app.listen(PORT , ()=> console.log(`Server is running on ${PORT}`))
+})
+
+app.get('/user/name', (req, res) => {
+    return res.json({
+        id: 3
+    })
+})
+
+app.post('/addtodo',(req,res)=>{
+
+})
+
+app.listen(process.env.PORT, () => console.log(`Server is running on ${process.env.PORT}`))
