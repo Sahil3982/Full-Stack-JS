@@ -1,7 +1,10 @@
-const express = require('express');
+import express from 'express';
+import dbConnection from './db/db.js';
 const app = express();
+const PORT = process.env.PORT || 3000; 
 
-const PORT = process.env.PORT || 3000; // Set the port number
+dbConnection()
+
 
 
 app.listen(PORT, () => {
